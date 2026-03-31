@@ -57,7 +57,7 @@ h1, h2, h3, h4 {
 }
 .section-title {
   font-family: 'Playfair Display', serif;
-  font-size: 2.4rem;
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
   font-weight: 700;
   color: var(--brown-dark);
   text-align: center;
@@ -163,6 +163,35 @@ h1, h2, h3, h4 {
 
 /* ─── Responsive ─────────────────────────────── */
 @media (max-width: 768px) {
-  .section-title { font-size: 1.8rem; }
-  .section { padding: 56px 0; }
+  .section-title { font-size: clamp(1.4rem, 5vw, 1.8rem); }
+  .section { padding: 48px 0; }
+  .section-subtitle { font-size: 0.95rem; margin-bottom: 36px; }
+  .container { padding: 0 16px; }
+
+  /* Full-width buttons on mobile */
+  .hero-btn-group {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .hero-btn-group .ant-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Stack hero stats */
+  .hero-stats {
+    gap: 24px !important;
+    margin-top: 36px !important;
+  }
+
+  /* Testimonial card padding */
+  .testimonial-card { padding: 24px 20px !important; }
+
+  /* CTA banner */
+  .cta-btn { width: 100% !important; }
+}
+
+@media (max-width: 480px) {
+  .section { padding: 36px 0; }
+  .container { padding: 0 12px; }
 }

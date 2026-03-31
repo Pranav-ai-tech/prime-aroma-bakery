@@ -49,22 +49,23 @@ export default function Navbar() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        padding: '0 32px',
+        padding: '0 16px',
         background: scrolled ? 'rgba(255,245,225,0.96)' : '#FFF5E1',
         backdropFilter: scrolled ? 'blur(12px)' : 'none',
         boxShadow: scrolled ? '0 2px 20px rgba(107,62,38,0.12)' : 'none',
         transition: 'all 0.3s ease',
-        height: 72,
+        height: 64,
+        minWidth: 0,
       }}
     >
       {/* Logo */}
-      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-        <span style={{ fontSize: 24 }}>🥐</span>
+      <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
+        <span style={{ fontSize: 22 }}>🥐</span>
         <div>
-          <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: '1.1rem', color: '#4A2A18', lineHeight: 1 }}>
+          <div style={{ fontFamily: 'Playfair Display, serif', fontWeight: 700, fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)', color: '#4A2A18', lineHeight: 1 }}>
             Prime Aroma
           </div>
-          <div style={{ fontSize: '0.68rem', color: '#8B5E3C', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+          <div style={{ fontSize: '0.62rem', color: '#8B5E3C', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
             Foods Bakery
           </div>
         </div>
@@ -83,25 +84,26 @@ export default function Navbar() {
           fontWeight: 500,
           color: '#6B3E26',
           minWidth: 0,
+          overflow: 'hidden',
         }}
         className="desktop-menu"
       />
 
       {/* Right actions */}
-      <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
         <Badge count={cartCount} className="cart-badge">
           <Button
             type="text"
             icon={<ShoppingCartOutlined style={{ fontSize: 22, color: '#6B3E26' }} />}
             onClick={() => navigate('/cart')}
-            style={{ width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{ width: 40, height: 40, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           />
         </Badge>
         <Button
           type="primary"
-          className="btn-primary"
+          className="btn-primary desktop-order-btn"
           onClick={() => navigate('/products')}
-          style={{ height: 40, padding: '0 20px', fontSize: '0.9rem' }}
+          style={{ height: 38, padding: '0 18px', fontSize: '0.88rem' }}
         >
           Order Now
         </Button>
@@ -122,6 +124,7 @@ export default function Navbar() {
         onClose={() => setDrawerOpen(false)}
         bodyStyle={{ background: '#FFF5E1', padding: 0 }}
         headerStyle={{ background: '#FFF5E1', borderBottom: '1px solid #F5E6C8' }}
+        width={260}
       >
         <Menu
           mode="inline"
@@ -130,14 +133,31 @@ export default function Navbar() {
           style={{ background: 'transparent', border: 'none', fontWeight: 500 }}
           onClick={() => setDrawerOpen(false)}
         />
+        <div style={{ padding: '16px 24px' }}>
+          <Button
+            type="primary"
+            className="btn-primary"
+            block
+            onClick={() => { navigate('/products'); setDrawerOpen(false) }}
+            style={{ height: 44, fontSize: '0.95rem' }}
+          >
+            Order Now
+          </Button>
+        </div>
       </Drawer>
 
       <style>{`
-        @media (min-width: 769px) { .mobile-menu-btn { display: none !important; } }
-        @media (max-width: 768px) { .desktop-menu { display: none !important; } }
+        @media (min-width: 769px) {
+          .mobile-menu-btn { display: none !important; }
+        }
+        @media (max-width: 768px) {
+          .desktop-menu { display: none !important; }
+          .desktop-order-btn { display: none !important; }
+        }
         .ant-menu-horizontal { box-shadow: none !important; }
         .ant-menu-horizontal .ant-menu-item { color: #6B3E26 !important; font-weight: 500; }
         .ant-menu-horizontal .ant-menu-item::after { border-bottom-color: #6B3E26 !important; }
+        .ant-layout-header { line-height: normal !important; }
       `}</style>
     </Header>
   )

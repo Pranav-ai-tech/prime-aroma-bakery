@@ -39,7 +39,7 @@ export default function Home() {
     <div style={{ background: '#FFF5E1' }}>
 
       {/* ─── HERO ─────────────────────────────────── */}
-      <section style={{ position: 'relative', minHeight: '92vh', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
+      <section style={{ position: 'relative', minHeight: 'clamp(520px, 92vh, 1000px)', display: 'flex', alignItems: 'center', overflow: 'hidden' }}>
         <div style={{
           position: 'absolute', inset: 0,
           backgroundImage: `url(${HERO_IMAGE})`,
@@ -52,8 +52,8 @@ export default function Home() {
           background: 'linear-gradient(135deg, rgba(44,24,16,0.75) 0%, rgba(107,62,38,0.45) 60%, rgba(0,0,0,0.2) 100%)',
         }} />
 
-        <div className="container" style={{ position: 'relative', zIndex: 2, padding: '0 24px' }}>
-          <div style={{ maxWidth: 640 }}>
+        <div className="container" style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{ maxWidth: 640, width: '100%' }}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: 'rgba(255,245,225,0.18)', backdropFilter: 'blur(8px)',
@@ -80,7 +80,7 @@ export default function Home() {
 
             <p style={{
               color: 'rgba(255,245,225,0.85)',
-              fontSize: '1.15rem',
+              fontSize: 'clamp(0.95rem, 2.5vw, 1.15rem)',
               lineHeight: 1.8,
               marginBottom: 40,
               maxWidth: 480,
@@ -88,13 +88,13 @@ export default function Home() {
               Artisan breads, decadent cakes, and flaky pastries — crafted with love from the finest ingredients, delivered fresh to your door.
             </p>
 
-            <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
+            <div className="hero-btn-group" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
               <Button
                 size="large"
                 className="btn-primary"
                 icon={<ShoppingCartIcon />}
                 onClick={() => navigate('/products')}
-                style={{ height: 54, fontSize: '1rem', paddingLeft: 28, paddingRight: 28 }}
+                style={{ height: 54, fontSize: 'clamp(0.9rem, 2vw, 1rem)', paddingLeft: 28, paddingRight: 28 }}
               >
                 Order Now
               </Button>
@@ -116,7 +116,7 @@ export default function Home() {
             </div>
 
             {/* Stats strip */}
-            <div style={{ display: 'flex', gap: 40, marginTop: 56, flexWrap: 'wrap' }}>
+            <div className="hero-stats" style={{ display: 'flex', gap: 40, marginTop: 56, flexWrap: 'wrap' }}>
               {[
                 { value: '10K+', label: 'Happy Customers' },
                 { value: '50+',  label: 'Unique Recipes'  },
@@ -237,7 +237,7 @@ export default function Home() {
           <p className="section-subtitle">Real reviews from real food lovers</p>
 
           <div style={{ maxWidth: 680, margin: '0 auto' }}>
-            <div style={{
+            <div className="testimonial-card" style={{
               background: '#fff', borderRadius: 20, padding: 40,
               boxShadow: '0 8px 40px rgba(107,62,38,0.12)',
               textAlign: 'center', transition: 'all 0.5s ease',
@@ -284,22 +284,24 @@ export default function Home() {
       {/* ─── CTA BANNER ──────────────────────────── */}
       <section style={{
         background: 'linear-gradient(135deg, #4A2A18 0%, #6B3E26 50%, #8B5E3C 100%)',
-        padding: '72px 24px', textAlign: 'center',
+        padding: 'clamp(48px, 8vw, 72px) 24px', textAlign: 'center',
       }}>
-        <h2 style={{ fontFamily: 'Playfair Display, serif', color: '#FFF5E1', fontSize: 'clamp(1.8rem,4vw,2.8rem)', marginBottom: 16 }}>
+        <h2 style={{ fontFamily: 'Playfair Display, serif', color: '#FFF5E1', fontSize: 'clamp(1.6rem, 4vw, 2.8rem)', marginBottom: 16 }}>
           Ready to Indulge?
         </h2>
-        <p style={{ color: 'rgba(255,245,225,0.8)', fontSize: '1.05rem', marginBottom: 36, maxWidth: 440, margin: '0 auto 36px' }}>
+        <p style={{ color: 'rgba(255,245,225,0.8)', fontSize: 'clamp(0.9rem, 2vw, 1.05rem)', marginBottom: 36, maxWidth: 440, margin: '0 auto 36px' }}>
           Browse our full menu and get fresh bakery delivered today.
         </p>
-        <Button
-          size="large"
-          className="btn-primary"
-          onClick={() => navigate('/products')}
-          style={{ height: 52, fontSize: '1rem', background: '#FFF5E1 !important', color: '#6B3E26 !important', borderColor: '#FFF5E1 !important', fontWeight: 700 }}
-        >
-          Shop Now →
-        </Button>
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '0 16px' }}>
+          <Button
+            size="large"
+            className="btn-primary cta-btn"
+            onClick={() => navigate('/products')}
+            style={{ height: 52, fontSize: '1rem', background: '#FFF5E1 !important', color: '#6B3E26 !important', borderColor: '#FFF5E1 !important', fontWeight: 700, maxWidth: 360 }}
+          >
+            Shop Now →
+          </Button>
+        </div>
       </section>
     </div>
   )
